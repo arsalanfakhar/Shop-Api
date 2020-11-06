@@ -2,10 +2,18 @@ const express= require('express');
 const app=express();
 const morgan=require('morgan');
 const bodyParser=require('body-parser');
+const mongoose=require('mongoose');
 
 
 const productRoutes=require('./api/routes/products');
 const orderRoutes=require('./api/routes/orders');
+
+mongoose.connect('mongodb+srv://node-shop:'+
+process.env.MONGO_ATLAS_PW+
+'@node-rest-shop.as5nb.mongodb.net/<node-rest-shop>?retryWrites=true&w=majority',{
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+});
 
 app.use(morgan('dev'));
 
